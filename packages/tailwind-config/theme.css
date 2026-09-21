@@ -1,0 +1,60 @@
+@theme {
+  --color-canvas: #faf8f5;
+  --color-surface: #f1ede6;
+
+  --color-line: #ded8ce;
+  --color-line-soft: #e8e3da;
+  --color-line-faint: #e4dfd5;
+  --color-line-strong: #c5bdb0;
+
+  --color-ink: #1a150f;
+  --color-ink-body: #2a241c;
+  --color-ink-secondary: #47413a;
+  --color-ink-muted: #6b6459;
+  --color-ink-disabled: #9a9184;
+
+  --color-accent: #7d5a34;
+  --color-accent-contrast: #fdfbf7;
+
+  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  --text-display: 44px;
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-title: 34px;
+  --text-title--line-height: 1;
+  --text-title--letter-spacing: -0.02em;
+
+  --text-heading: 22px;
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.01em;
+
+  --text-large: 16px;
+  --text-large--line-height: 1.2;
+  --text-large--letter-spacing: -0.01em;
+
+  --text-body: 15px;
+  --text-body--line-height: 1.6;
+
+  --text-control: 14px;
+  --text-control--line-height: 1.4;
+
+  --text-small: 13px;
+  --text-small--line-height: 1.6;
+
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+
+  --text-label: 11px;
+  --text-label--line-height: 1.2;
+
+  --text-micro: 10px;
+  --text-micro--line-height: 1.2;
+
+  --tracking-label: 0.24em;
+  --tracking-meta: 0.14em;
+  --tracking-caps: 0.1em;
+  --tracking-wide-sm: 0.06em;
+}

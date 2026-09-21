@@ -9,6 +9,8 @@ apps/                        приложения
 packages/                    внутренние пакеты (@repo/*)
   typescript-config/         общий tsconfig
   eslint-config/             общий eslint
+  tailwind-config/           тема Tailwind (@repo/tailwind-config)
+  ui/                        UI-kit на React 19 (@repo/ui)
 .docs/                       документация
 .claude/CLAUDE.md            правила для AI-агентов
 turbo.json                   граф задач
@@ -105,6 +107,110 @@ export default config;
 
 Отключать унаследованное правило в отдельном пакете можно, но рядом должен быть
 комментарий с причиной.
+
+## Tailwind (`@repo/tailwind-config`)
+
+Во фронтенд-пакетах используется Tailwind CSS 4. Токены дизайна живут в
+`packages/tailwind-config/theme.css` — это блок `@theme`, из которого Tailwind
+сам генерирует и CSS-переменные, и утилиты. Своего `tailwind.config.js` нигде
+нет: в четвёртой версии конфигурация описывается в CSS.
+
+Приложение подключает тему в своём корневом стиле:
+
+```css
+@import "tailwindcss";
+@import "@repo/tailwind-config/theme.css";
+```
+
+После этого доступны утилиты по именам токенов: `bg-canvas`, `bg-surface`,
+`border-line-strong`, `text-ink-muted`, `text-accent`, `font-mono`,
+`text-control`, `tracking-label` и остальные из `theme.css`.
+
+Названия цветов не привязаны к роли в конкретном экране: `ink*` — текст от
+основного к выключенному, `line*` — границы от самой светлой к контрастной,
+`canvas` и `surface` — фоны, `accent` — единственный акцентный цвет.
+
+Перекрасить тему можно переопределением переменной, компоненты при этом не
+трогаются:
+
+```css
+:root {
+  --color-accent: #4b6cff;
+}
+```
+
+## UI-kit (`@repo/ui`)
+
+Библиотека компонентов на React 19, перенесённая из дизайна
+«Минимальный UI-кит — светлая тема» (проект Claude Design «UI-kit Bridge
+Console»).
+
+```ts
+import { Button, DataTable, TopNav } from "@repo/ui";
+import "@repo/ui/styles.css";
+```
+
+`react` и `react-dom` объявлены в `peerDependencies` — версию задаёт приложение,
+пакет не тянет вторую копию React. В `devDependencies` они же, чтобы пакет
+собирался и линтился сам по себе.
+
+Шрифты Geist и Geist Mono пакет не подключает: их подключает приложение
+(`fonts.googleapis.com`, начертания 300/400/500/600 и mono 400/500). Без них
+сработает системный fallback из `--font-sans`.
+
+### Состав
+
+| Группа    | Компоненты                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------ |
+| Основы    | `SectionHeading`                                                                           |
+| Навигация | `TopNav`, `SideNav`, `Breadcrumbs`, `Tabs`, `Pagination`                                   |
+| Формы     | `Button`, `TextField`, `SelectField`, `Checkbox`, `RadioGroup`, `Switch`, `Slider`, `Chip` |
+| Сообщения | `Badge`, `Alert`, `ConfirmPanel`                                                           |
+| Данные    | `Meter`, `ActivityLog`, `DataTable`                                                        |
+
+Все компоненты с состоянием — управляемые: значение приходит пропом, изменение
+уходит колбэком (`value` / `onValueChange`, `checked` / `onCheckedChange`,
+`activeId` / `onSelect`). Внутреннего состояния нет нигде, кроме `useId`.
+
+### Устройство пакета
+
+- `src/<component>/<component>.tsx` — один компонент на директорию,
+  публичный API собирается в `src/index.ts`;
+- стилей в виде отдельных CSS-файлов у компонентов нет: оформление — утилиты
+  Tailwind в `className`. Литералов цвета и размера в утилитах быть не должно,
+  только имена токенов из `@repo/tailwind-config`;
+- варианты (`variant`, `tone`, `size`) раскладываются в `Record<Тип, string>`
+  рядом с компонентом, а не собираются конкатенацией в разметке;
+- общие куски классов, которые нужны нескольким компонентам, лежат в
+  `src/internal/` и наружу не экспортируются.
+
+### Сборка стилей
+
+`npm run build` в пакете делает два шага: `tsc` собирает TypeScript в `dist/`,
+затем Tailwind CLI собирает `src/styles/index.css` в `dist/styles/index.css`.
+Входной файл подключает слои `theme` и `utilities`, тему из
+`@repo/tailwind-config` и указывает `@source` на исходники компонентов:
+
+```css
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@import "@repo/tailwind-config/theme.css";
+
+@source "../**/*.{ts,tsx}";
+```
+
+Из-за этого `@repo/ui/styles.css` самодостаточен: приложению не нужно добавлять
+исходники пакета в сканирование Tailwind, кит работает и там, где Tailwind не
+подключён вообще. Preflight намеренно не включён — его подключает приложение
+через `@import "tailwindcss"`, и второй копии в ките быть не должно.
+
+Добавили компонент — ничего в конфигурации менять не нужно, `@source` подхватит
+файл сам. Классы должны быть записаны в исходнике целиком: Tailwind ищет их
+текстом, и `` `text-${tone}` `` в сборку не попадёт.
+
+Пресеты для React лежат в общих конфигах: `@repo/typescript-config/react.json`
+(`jsx: react-jsx`, DOM-библиотеки) и `@repo/eslint-config/react`
+(база плюс `eslint-plugin-react-hooks`).
 
 ## Зависимости между пакетами
 

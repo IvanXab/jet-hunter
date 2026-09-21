@@ -1,7 +1,7 @@
 # jet-hunter
 
-Turborepo-монорепозиторий на npm workspaces. `apps/` и `packages/` сейчас пустые —
-заготовка под будущие пакеты.
+Turborepo-монорепозиторий на npm workspaces. `apps/` пока пуст, в `packages/`
+лежат общие конфиги и UI-kit на React 19 + Tailwind 4.
 
 ## Окружение
 
@@ -18,6 +18,8 @@ apps/                        — приложения (Next.js, API, CLI и т.�
 packages/                    — внутренние пакеты (@repo/*)
 packages/typescript-config/  — общий tsconfig
 packages/eslint-config/      — общий eslint
+packages/tailwind-config/    — тема Tailwind (@theme с токенами дизайна)
+packages/ui/                 — UI-kit на React 19 (@repo/ui)
 turbo.json                   — граф задач
 ```
 
@@ -28,14 +30,14 @@ turbo.json                   — граф задач
 ```jsonc
 // tsconfig.json
 {
-  "extends": "@repo/typescript-config/base.json", // или node.json
+  "extends": "@repo/typescript-config/base.json", // или node.json / react.json
   "include": ["src/**/*.ts"],
 }
 ```
 
 ```js
 // eslint.config.js
-import { config } from "@repo/eslint-config/base";
+import { config } from "@repo/eslint-config/base"; // для React — /react
 export default config;
 ```
 
@@ -176,6 +178,20 @@ export default config;
 - `.docs/setup.md` — окружение, установка, типовые проблемы
 - `.docs/monorepo.md` — структура, добавление пакетов, общие конфиги
 - `.docs/turborepo.md` — граф задач, кеш, фильтры, CI
+
+## Фронтенд
+
+- UI — React 19. Компоненты из `@repo/ui`, не переписывать их копию в приложении.
+- Стили — Tailwind 4. Конфигурация только в CSS (`@theme`), `tailwind.config.js`
+  не заводить.
+- Цвета, размеры и трекинг брать именами токенов из `@repo/tailwind-config`
+  (`bg-canvas`, `text-ink-muted`, `border-line`, `text-control`,
+  `tracking-label`). Литералы вида `text-[#1a150f]` и `p-[13px]` — только там,
+  где в дизайне действительно нет токена.
+- Классы Tailwind писать в разметке целиком: `` `text-${tone}` `` в сборку не
+  попадёт, варианты раскладывать в `Record<Тип, string>`.
+- Новый компонент кита → `packages/ui/src/<component>/<component>.tsx` плюс
+  экспорт в `src/index.ts`. Отдельных CSS-файлов у компонентов нет.
 
 ## Справка по Turborepo
 
