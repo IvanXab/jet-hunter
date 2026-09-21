@@ -1,40 +1,15 @@
 # jet-hunter
 
-Turborepo monorepo.
+Монорепозиторий на [Turborepo](https://turborepo.dev) и npm workspaces.
 
-## Требования
+Сейчас это заготовка: приложений ещё нет, готовы инфраструктура сборки и общие
+конфиги TypeScript и ESLint.
 
-- Node **24.14.0** (`nvm use` подхватит из `.nvmrc`; `engine-strict` не даст поставить зависимости на другой версии)
-- npm workspaces
+## Документация
 
-## Структура
-
-```
-apps/      — приложения
-packages/  — внутренние пакеты
-```
-
-Обе директории пока пустые.
-
-## Команды
-
-```bash
-npm install
-npm run dev          # turbo run dev
-npm run build        # turbo run build
-npm run lint
-npm run check-types
-npm run test
-npm run format
-```
-
-Запуск только для изменённых пакетов:
-
-```bash
-npx turbo run build --affected
-```
-
-## Кеш
-
-Локальный кеш Turborepo включён, remote cache **отключён** в `turbo.json`
-(`remoteCache.enabled: false`) — `turbo login` / `turbo link` не нужны.
+| Документ                                       | О чём                                                                         |
+| ---------------------------------------------- | ----------------------------------------------------------------------------- |
+| [Окружение и установка](.docs/setup.md)        | Быстрый старт, команды, Node и npm, типовые проблемы                          |
+| [Работа с монорепозиторием](.docs/monorepo.md) | Структура, добавление приложений и пакетов, общие конфиги, соглашения по коду |
+| [Turborepo: задачи и кеш](.docs/turborepo.md)  | Граф задач, кеширование, фильтры, CI                                          |
+| [Правила для AI-чагентов](.claude/CLAUDE.md)   | Соглашения, которые читают Claude и другие агенты                             |

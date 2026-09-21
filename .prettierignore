@@ -1,0 +1,10 @@
+node_modules
+.turbo
+dist
+.next
+
+.agents/skills
+.claude/skills
+
+package-lock.json
+skills-lock.json
