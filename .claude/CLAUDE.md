@@ -1,7 +1,7 @@
 # jet-hunter
 
-Turborepo-монорепозиторий на npm workspaces. `apps/` пока пуст, в `packages/`
-лежат общие конфиги и UI-kit на React 19 + Tailwind 4.
+Turborepo-монорепозиторий на npm workspaces. В `apps/` лежит frontend на React 19
++ Vite, в `packages/` — общие конфиги и UI-kit на React 19 + Tailwind 4.
 
 ## Окружение
 
@@ -15,6 +15,7 @@ Turborepo-монорепозиторий на npm workspaces. `apps/` пока �
 
 ```
 apps/                        — приложения (Next.js, API, CLI и т.п.)
+apps/frontend/               — SPA на React 19 + React Compiler + Vite (@repo/frontend)
 packages/                    — внутренние пакеты (@repo/*)
 packages/typescript-config/  — общий tsconfig
 packages/eslint-config/      — общий eslint

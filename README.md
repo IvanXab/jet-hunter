@@ -2,8 +2,8 @@
 
 Монорепозиторий на [Turborepo](https://turborepo.dev) и npm workspaces.
 
-Сейчас это заготовка: приложений ещё нет, готовы инфраструктура сборки и общие
-конфиги TypeScript и ESLint.
+В `apps/frontend` живёт SPA на React 19 с React Compiler и Vite, в `packages/`
+— общие конфиги TypeScript и ESLint, тема Tailwind и UI-kit.
 
 ## Документация
 
