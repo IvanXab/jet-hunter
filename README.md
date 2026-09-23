@@ -2,7 +2,7 @@
 
 Монорепозиторий на [Turborepo](https://turborepo.dev) и npm workspaces.
 
-В `apps/frontend` живёт SPA на React 19 с React Compiler и Vite, в `packages/`
+В `apps/frontend` живёт SPA на React 19 с React Compiler, React Router и Vite, в `packages/`
 — общие конфиги TypeScript и ESLint, тема Tailwind и UI-kit.
 
 ## Документация

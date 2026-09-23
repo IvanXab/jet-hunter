@@ -6,7 +6,7 @@
 
 ```
 apps/                        приложения
-  frontend/                  SPA на React 19 + Vite (@repo/frontend)
+  frontend/                  SPA на React 19 + Vite + React Router (@repo/frontend)
 packages/                    внутренние пакеты (@repo/*)
   typescript-config/         общий tsconfig
   eslint-config/             общий eslint
