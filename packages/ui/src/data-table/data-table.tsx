@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { classNames } from "../internal/class-names.js";
+import { FOCUS_RING } from "../internal/focus-ring.js";
 
 export interface DataTableColumn<Row> {
   key: string;
@@ -13,16 +14,19 @@ export interface DataTableProps<Row> {
   columns: readonly DataTableColumn<Row>[];
   rows: readonly Row[];
   getRowKey: (row: Row) => string;
+  onRowClick?: (row: Row) => void;
 }
 
 export function DataTable<Row>({
   columns,
   rows,
   getRowKey,
+  onRowClick,
 }: DataTableProps<Row>) {
   const gridTemplateColumns = columns
     .map((column) => column.width ?? "minmax(0, 1fr)")
     .join(" ");
+  const isInteractive = onRowClick !== undefined;
 
   return (
     <div className="flex flex-col" role="table">
@@ -45,8 +49,19 @@ export function DataTable<Row>({
         <div
           key={getRowKey(row)}
           role="row"
-          className="grid items-center border-b border-line-soft py-[15px] hover:bg-surface"
+          tabIndex={isInteractive ? 0 : undefined}
+          className={classNames(
+            "grid items-center border-b border-line-soft py-[15px] hover:bg-surface",
+            isInteractive && "cursor-pointer",
+            isInteractive && FOCUS_RING,
+          )}
           style={{ gridTemplateColumns }}
+          onClick={() => onRowClick?.(row)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              onRowClick?.(row);
+            }
+          }}
         >
           {columns.map((column) => (
             <div
