@@ -182,8 +182,12 @@ import "@repo/ui/styles.css";
 собирался и линтился сам по себе.
 
 Шрифты Geist и Geist Mono пакет не подключает: их подключает приложение
-(`fonts.googleapis.com`, начертания 300/400/500/600 и mono 400/500). Без них
-сработает системный fallback из `--font-sans`.
+npm-пакетами `@fontsource-variable/geist` и `@fontsource-variable/geist-mono`
+(вариативные, все начертания в одном файле, без запросов к внешним CDN). Без
+них сработает системный fallback из `--font-sans`. В `apps/frontend` шрифты
+импортируются один раз — в начале `src/styles.css`, там же `--font-sans`
+назначен шрифтом `body` по умолчанию, поэтому писать `font-sans` в разметке не
+нужно.
 
 ### Состав
 

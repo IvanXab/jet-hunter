@@ -29,8 +29,9 @@
   --color-accent-contrast: light-dark(#fdfbf7, #0a0a0c);
   --color-accent-mark: light-dark(#2a241c, #0a0a0c);
 
-  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+  --font-sans: "Geist Variable", "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono:
+    "Geist Mono Variable", "Geist Mono", ui-monospace, "SF Mono", monospace;
 
   --text-display: 44px;
   --text-display--line-height: 1;

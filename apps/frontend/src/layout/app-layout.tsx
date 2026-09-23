@@ -13,7 +13,10 @@ export function AppLayout() {
   return (
     <div className="grid h-dvh grid-cols-[18rem_minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)] bg-canvas">
       <header className="col-span-2 flex h-14 items-center border-b border-line px-6">
-        <Link to="/" className="text-large font-medium text-ink">
+        <Link
+          to="/"
+          className="text-heading font-medium text-ink uppercase no-underline"
+        >
           jet hunter
         </Link>
       </header>

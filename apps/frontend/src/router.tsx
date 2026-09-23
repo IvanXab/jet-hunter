@@ -1,5 +1,4 @@
-import { createBrowserRouter } from "react-router";
-import { App } from "@/app";
+import { createBrowserRouter, Navigate } from "react-router";
 import { AppLayout } from "@/layout/app-layout";
 
 export const router = createBrowserRouter([
@@ -7,7 +6,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     children: [
-      { index: true, element: <App /> },
+      { index: true, element: <Navigate to="/resume" replace /> },
       {
         path: "resume",
         lazy: {
