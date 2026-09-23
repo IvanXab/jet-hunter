@@ -16,7 +16,7 @@ export interface SideNavProps {
   label?: string;
 }
 
-const ITEM_CLASS = `flex cursor-pointer items-center gap-3 border-0 border-b border-line-soft bg-transparent py-3 text-left no-underline ${FOCUS_RING}`;
+const ITEM_CLASS = `flex cursor-pointer items-center gap-3 border-0 bg-transparent py-2.5 text-left no-underline ${FOCUS_RING}`;
 
 function isPlainLeftClick(event: MouseEvent<HTMLAnchorElement>): boolean {
   const hasModifier =
@@ -35,16 +35,9 @@ function SideNavItemContent({
   return (
     <>
       <span
-        aria-hidden="true"
         className={classNames(
-          "h-[14px] w-[2px]",
-          active ? "bg-accent" : "bg-transparent",
-        )}
-      />
-      <span
-        className={classNames(
-          "flex-1 font-sans text-control",
-          active ? "text-ink" : "text-ink-muted",
+          "flex-1 font-sans text-large",
+          active ? "text-accent" : "text-ink-muted",
         )}
       >
         {item.label}

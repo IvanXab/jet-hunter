@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { ThemeToggle } from "@/theme/theme-toggle";
 
 const NAVIGATION_ITEMS: readonly SideNavItem[] = [
-  { id: "/resume", label: "Мое резюме", href: "/resume" },
+  { id: "/resume", label: "Мои резюме", href: "/resume" },
 ];
 
 export function AppLayout() {
