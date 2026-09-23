@@ -69,7 +69,7 @@ export function App() {
   const [onlyPrivate, setOnlyPrivate] = useState(false);
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-10 bg-canvas px-6 py-12">
+    <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-12">
       <header className="flex flex-col gap-3">
         <SectionHeading index="01" title="UI-KIT" />
         <h1 className="text-title text-ink">jet-hunter</h1>
@@ -129,6 +129,6 @@ export function App() {
           getRowKey={(flight) => flight.id}
         />
       </section>
-    </main>
+    </div>
   );
 }
