@@ -2,7 +2,7 @@ import { SideNav, type SideNavItem } from "@repo/ui";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
 
 const NAVIGATION_ITEMS: readonly SideNavItem[] = [
-  { id: "/resume", label: "Мое резюме" },
+  { id: "/resume", label: "Мое резюме", href: "/resume" },
 ];
 
 export function AppLayout() {
@@ -18,6 +18,7 @@ export function AppLayout() {
       </header>
       <aside className="overflow-y-auto border-r border-line px-4 py-6">
         <SideNav
+          label="Основная навигация"
           items={NAVIGATION_ITEMS}
           activeId={location.pathname}
           onSelect={(path) => {
