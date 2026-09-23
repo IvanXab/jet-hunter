@@ -1,5 +1,4 @@
 import { useId } from "react";
-
 import { PEER_FOCUS_RING } from "../internal/focus-ring.js";
 
 export interface RadioOption {

@@ -239,6 +239,19 @@ import { formatDate } from "@repo/utils"; // да
 import { formatDate } from "../../packages/utils/src/date"; // нет
 ```
 
+Внутри `apps/frontend` свои модули импортируются через alias `@/`, который
+указывает на `apps/frontend/src`. Он задан в двух местах, и их нужно держать
+синхронными: `paths` в `tsconfig.json` (для TypeScript и редактора) и
+`resolve.alias` в `vite.config.ts` (для сборки).
+
+```ts
+import { AppLayout } from "@/layout/app-layout"; // да
+import { AppLayout } from "../../layout/app-layout"; // нет
+```
+
+Alias работает только внутри приложения. Код соседних пакетов по-прежнему
+импортируется по имени пакета.
+
 ## Версии одинаковых зависимостей
 
 Одну и ту же библиотеку во всех пакетах держать одной версии — иначе в сборку

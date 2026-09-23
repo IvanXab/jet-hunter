@@ -1,5 +1,4 @@
 import { useId, type InputHTMLAttributes } from "react";
-
 import { classNames } from "../internal/class-names.js";
 import { FIELD_CONTROL_CLASS } from "../internal/field.js";
 

@@ -1,5 +1,4 @@
 import { type ReactNode } from "react";
-
 import { classNames } from "../internal/class-names.js";
 
 export type BadgeTone = "default" | "accent" | "muted" | "disabled";

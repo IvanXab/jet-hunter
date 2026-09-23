@@ -50,6 +50,11 @@ export const config = [
       eqeqeq: ["error", "always", { null: "ignore" }],
       "no-var": "error",
       "prefer-const": "error",
+      "padding-line-between-statements": [
+        "error",
+        { blankLine: "always", prev: "import", next: "*" },
+        { blankLine: "never", prev: "import", next: "import" },
+      ],
     },
   },
   {
