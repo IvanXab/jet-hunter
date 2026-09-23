@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router/dom";
 import { router } from "@/router";
+import { initializeTheme } from "@/theme/theme-store";
 import "@/styles.css";
 
 const rootElement = document.getElementById("root");
@@ -9,6 +10,8 @@ const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Root element #root not found");
 }
+
+initializeTheme();
 
 createRoot(rootElement).render(
   <StrictMode>

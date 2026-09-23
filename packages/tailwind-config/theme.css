@@ -1,20 +1,33 @@
+:root {
+  color-scheme: light dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
 @theme {
-  --color-canvas: #faf8f5;
-  --color-surface: #f1ede6;
+  --color-canvas: light-dark(#faf8f5, #0a0a0c);
+  --color-surface: light-dark(#f1ede6, #101013);
 
-  --color-line: #ded8ce;
-  --color-line-soft: #e8e3da;
-  --color-line-faint: #e4dfd5;
-  --color-line-strong: #c5bdb0;
+  --color-line: light-dark(#ded8ce, #26262b);
+  --color-line-soft: light-dark(#e8e3da, #1a1a1e);
+  --color-line-faint: light-dark(#e4dfd5, #1e1e22);
+  --color-line-strong: light-dark(#c5bdb0, #35343a);
 
-  --color-ink: #1a150f;
-  --color-ink-body: #2a241c;
-  --color-ink-secondary: #47413a;
-  --color-ink-muted: #6b6459;
-  --color-ink-disabled: #9a9184;
+  --color-ink: light-dark(#1a150f, #f2eeec);
+  --color-ink-body: light-dark(#2a241c, #e8e4e2);
+  --color-ink-secondary: light-dark(#47413a, #b7b1ae);
+  --color-ink-muted: light-dark(#6b6459, #85808a);
+  --color-ink-disabled: light-dark(#9a9184, #4f4c53);
 
-  --color-accent: #7d5a34;
-  --color-accent-contrast: #fdfbf7;
+  --color-accent: light-dark(#7d5a34, #e4483f);
+  --color-accent-contrast: light-dark(#fdfbf7, #0a0a0c);
+  --color-accent-mark: light-dark(#2a241c, #0a0a0c);
 
   --font-sans: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;

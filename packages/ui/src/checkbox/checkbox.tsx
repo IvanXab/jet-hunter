@@ -26,7 +26,7 @@ export function Checkbox({
       />
       <span
         aria-hidden="true"
-        className={`flex size-[15px] items-center justify-center border border-line-strong peer-checked:border-accent peer-checked:bg-accent peer-checked:[&>span]:bg-ink-body ${PEER_FOCUS_RING}`}
+        className={`flex size-[15px] items-center justify-center border border-line-strong peer-checked:border-accent peer-checked:bg-accent peer-checked:[&>span]:bg-accent-mark ${PEER_FOCUS_RING}`}
       >
         <span className="size-[5px] bg-transparent" />
       </span>
