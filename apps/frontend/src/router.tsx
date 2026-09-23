@@ -6,6 +6,17 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    children: [{ index: true, element: <App /> }],
+    children: [
+      { index: true, element: <App /> },
+      {
+        path: "resume",
+        lazy: {
+          Component: async () => {
+            const { ResumePage } = await import("@/pages/resume/resume-page");
+            return ResumePage;
+          },
+        },
+      },
+    ],
   },
 ]);
